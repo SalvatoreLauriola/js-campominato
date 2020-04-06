@@ -12,6 +12,10 @@ var numeroBombe = [];
 
 var selected = [];
 
+var numMax = 84;
+
+var numChoice = 0;
+
 
 while (numeroBombe.length < 16 ) {
   var bomb = getRandomNumber(1,100);
@@ -23,22 +27,27 @@ while (numeroBombe.length < 16 ) {
 console.log(numeroBombe);
 
 
+
+
+
+
+
 var numeroUtente = parseInt(prompt('Inserisci un numero per volta, compreso tra 1 e 100'));
 
-if (!numeroBombe.includes(numeroUtente) && !selected.includes(numeroUtente)) {
-  selected.push(numeroUtente);
-  console.log('Inserisci altro numero')
-} else {
-  console.log('stai attento')
+while (selected.length < 84) {
+  
+  if (!numeroBombe.includes(numeroUtente) && !selected.includes(numeroUtente)) {
+    numeroUtente = parseInt(prompt('Inserisci un numero per volta, compreso tra 1 e 100'));
+
+    selected.push(numeroUtente);
+    console.log('Inserisci altro numero')
+  } else {
+    console.log('stai attento')
+  }
+  console.log(selected);
 }
-console.log(selected);
 
 
-
-
-// while ((numeroUtente != numeroBombe)){
-//   numeroUtente = parseInt(prompt('Inserisci un numero compreso tra 1 e 100'));
-// }}
 
 function getRandomNumber (min, max) { 
   var random = Math.floor(Math.random() * (max - min +1) ) + min;
