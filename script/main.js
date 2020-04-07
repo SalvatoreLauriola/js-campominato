@@ -6,15 +6,15 @@
 // 5 -- Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
 
-// Creiamo una funzione che generi numeri randomici da 1 a 100
 
-var numeroBombe = [];
+
+var numeroBombe = [];   // 16 numeri casuali tra 1 e 100
 
 var selected = [];
 
-var numMax = 84;
+ var counter = 84;
 
-var numChoice = 0;
+ var tentativi = 0;
 
 
 while (numeroBombe.length < 16 ) {
@@ -27,28 +27,24 @@ while (numeroBombe.length < 16 ) {
 console.log(numeroBombe);
 
 
-
-
-
-
-
-var numeroUtente = parseInt(prompt('Inserisci un numero per volta, compreso tra 1 e 100'));
-
-while (selected.length < 84) {
+while(selected.length < counter){
+  var numeroUtente = parseInt(prompt('Inserisci un numero per volta, compreso tra 1 e 100'))
+if (numeroBombe.includes(numeroUtente) && numeroUtente){
+  alert('Hai perso! Numero tentativi: ' + tentativi);
+  break
+} else if (selected.includes(numeroUtente)) {
+  var numeroUtente = parseInt(prompt('Numero già inserito, riprova'));
+} else {
+  selected.push(numeroUtente)
+  tentativi++;
+  console.log(selected)
   
-  if (!numeroBombe.includes(numeroUtente) && !selected.includes(numeroUtente)) {
-    numeroUtente = parseInt(prompt('Inserisci un numero per volta, compreso tra 1 e 100'));
-
-    selected.push(numeroUtente);
-    console.log('Inserisci altro numero')
-  } else {
-    console.log('stai attento')
   }
-  console.log(selected);
+  console.log(tentativi);
 }
 
-
-
+  
+// Funzione che genera numeri random.
 function getRandomNumber (min, max) { 
   var random = Math.floor(Math.random() * (max - min +1) ) + min;
   return random;
